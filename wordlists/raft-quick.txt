@@ -23,4 +23,8 @@
 .bash_history
 swagger-ui.html
 wp-content/debug.log
+upload
+upload/
+uploads
+uploads/
 turbonet-1.0/fileupload.html
