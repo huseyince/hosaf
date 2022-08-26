@@ -22,9 +22,11 @@
 .git/refs/wip/wtree/refs/heads
 .bash_history
 swagger-ui.html
+manager/
 wp-content/debug.log
 upload
 upload/
 uploads
 uploads/
 turbonet-1.0/fileupload.html
+turbonet-1.0/users.html
