@@ -1,0 +1,94 @@
+<html>
+<style>
+    body {
+        margin: 20px auto;
+        width: 500px;
+    }
+</style>
+<script>
+    function eeeeehhhm(ip) {
+        const decimalv1 = 'http://' + ip
+        const hexv1 = ip.split('.').reduce((acc, cur, i, arr) => {
+            return acc + '0x' + parseInt(cur).toString(16) + (arr.length - 1 !== i ? '.' : '')
+        }, 'http://')
+
+        const hexv2 = ip.split('.').reduce((acc, cur, i, arr) => {
+            let h = parseInt(cur).toString(16)
+            if ((h.length % 2) > 0) {
+                h = "0" + h;
+            }
+            return acc + h
+        }, 'http://0x')
+
+        const hexv3 = 'http://' + hexv1.slice(7).split(".")[0] + '.0x' + hexv2.slice(11)
+        const hexv4 = 'http://' + hexv1.slice(7).slice(0, 10) + '0x' + hexv2.slice(13)
+
+        const octalv1 = ip.split('.').reduce((acc, cur, i, arr) => {
+            return acc + '0' + parseInt(cur).toString(8) + (arr.length - 1 !== i ? '.' : '')
+        }, 'http://')
+
+        const octalv2 = ip.split('.').reduce((acc, cur, i, arr) => {
+            return acc + '0'.repeat(Math.floor(Math.random() * 9) + 1)
+                + parseInt(cur).toString(8) + (arr.length - 1 !== i ? '.' : '')
+        }, 'http://')
+
+
+        //const dwordv1 = 'http://' + ip.split('.').reduce((acc, cur, i, arr) => {
+        //  return (256 * acc) + parseInt(cur)
+        //}, 0)
+
+
+        const percentv1 = [...ip].reduce((acc, cur) => {
+            return acc + "%" + cur.charCodeAt(0).toString(16)
+        }, 'http://')
+
+        const mixedv1 = 'http://' + decimalv1.slice(7).split(".")[0] + '.' + hexv1.slice(7).split(".")[1] + '.' + octalv2.slice(7).split(".")[2] + '.' + hexv1.slice(7).split(".")[3]
+
+        const unicode = ip.split('.').reduce((acc, cur, i, arr) => {
+            cur.split('').forEach(n => {
+                if (n != '0') {
+                    acc += String.fromCodePoint(0x245f + parseInt(n))
+                } else {
+                    acc += String.fromCodePoint(0x24ea)
+                }
+            })
+            return acc + '．'
+        }, 'http://').slice(0, -1)
+
+        const [o1, o2, o3, o4] = ip.split('.')
+        classb = 'http://' + [o1, o2, o3 * 256 + +o4].join('.')
+        classa = 'http://' + [o1, o2 * 256 ** 2 + o3 * 256 + +o4].join('.')
+        dwordv1 = 'http://' + [o1 * 256 ** 3 + o2 * 256 ** 2 + o3 * 256 + +o4].join('.')
+
+        const octalv3 = "http://0" + parseInt(dwordv1.slice(7)).toString(8)
+
+        output.innerHTML = `
+      <a href='${decimalv1}'>${decimalv1}</a>
+      <a href='${classb}'>${classb}</a>
+      <a href='${classa}'>${classa}</a>
+      <a href='${dwordv1}'>${dwordv1}</a>
+      <a href='${hexv1}'>${hexv1}</a>
+      <a href='${hexv2}'>${hexv2}</a>
+      <a href='${hexv3}'>${hexv3}</a>
+      <a href='${hexv4}'>${hexv4}</a>
+      <a href='${octalv1}'>${octalv1}</a>
+      <a href='${octalv2}'>${octalv2}</a>
+      <a href='${octalv3}'>${octalv3}</a>
+      <a href='${percentv1}'>${percentv1}</a>
+      <a href='${mixedv1}'>${mixedv1}</a>
+      <a href='${unicode}'>${unicode}</a>
+    
+                created by <a href="https://twitter.com/h43z">h43z</a>
+          `
+    }
+
+</script>
+
+<body onload='eeeeehhhm(i.value)'>
+    <p>https://h.43z.one/ipconverter/</p>
+    <input id='i' type='text' value='127.0.0.1' placeholder='ip here'></input><button
+        onclick='eeeeehhhm(i.value)'>convert</button>
+    <pre id='output'></pre>
+</body>
+
+</html>
