@@ -36,20 +36,14 @@ generate_domain_urls_additional () {
     cat domains subdomains | sort -u | httpx -silent -p $ADDITIONAL_WEB_PORTS -o urls_additional
 }
 
-run_gowitness_fast () {
-    gowitness file -f urls_fast
-}
-
-run_gowitness_additional () {
-    gowitness file -f urls_additional
-}
-
 fast_scan () {
     echo "[!] Fast Fuzzing started"
     ffuf -s -t $THREAD -c -H "$ADDITIONAL_HEADER" -H "$USER_AGENT" -u URL/WORD -w urls_fast:URL -w ~/tools/hosaf/wordlists/raft-quick.txt:WORD -o ffuf_raft_quick
 
     jq -r '.results | sort_by(.url) | .[] | select(.status==200) | "\(.length),\(.url)"' ffuf_raft_quick | column -t -s, > f200fast
     jq -r '.results | sort_by(.url) | .[] | select(.status==403) | "\(.length),\(.url)"' ffuf_raft_quick | column -t -s, > f403fast
+
+    gowitness file -f urls_fast
 
     echo "[!] Fast Nuclei started"
     nuclei -m -l urls_fast -es info -rate-limit $THREAD -H "$ADDITIONAL_HEADER" -H "$USER_AGENT" -o nuclei_out_fast
@@ -62,6 +56,8 @@ additional_scan () {
 
     jq -r '.results | sort_by(.url) | .[] | select(.status==200) | "\(.length),\(.url)"' ffuf_raft_quick_additional | column -t -s, > f200additional
     jq -r '.results | sort_by(.url) | .[] | select(.status==403) | "\(.length),\(.url)"' ffuf_raft_quick_additional | column -t -s, > f403additional
+
+    gowitness file -f urls_additional
 
     echo "Finished $TARGET Additional Scan" | notify -silent
 }
@@ -76,7 +72,6 @@ fi
 
 if [ -f "urls_fast" ]; then
     fast_scan
-    run_gowitness_fast
 fi
 
 if [ -f "hosts" ]; then
@@ -89,5 +84,4 @@ fi
 
 if [ -f "urls_additional" ]; then
     additional_scan
-    run_gowitness_additional
 fi
