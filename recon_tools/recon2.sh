@@ -46,7 +46,7 @@ fast_scan () {
     gowitness file -f urls_fast
 
     echo "[!] Fast Nuclei started"
-    nuclei -m -l urls_fast -es info -rate-limit $THREAD -H "$ADDITIONAL_HEADER" -H "$USER_AGENT" -o nuclei_out_fast
+    nuclei -ni -m -l urls_fast -es info -rate-limit $THREAD -H "$ADDITIONAL_HEADER" -H "$USER_AGENT" -o nuclei_out_fast
     echo "Finished $TARGET Fast Scan" | notify -silent
 }
 
