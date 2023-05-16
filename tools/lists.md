@@ -2,11 +2,11 @@
 
 ## Go Packages
 
-https://github.com/projectdiscovery/nuclei
-https://github.com/projectdiscovery/httpx
-https://github.com/projectdiscovery/subfinder
-https://github.com/projectdiscovery/notify
-https://github.com/projectdiscovery/cloudlist
+- https://github.com/projectdiscovery/nuclei
+- https://github.com/projectdiscovery/httpx
+- https://github.com/projectdiscovery/subfinder
+- https://github.com/projectdiscovery/notify
+- https://github.com/projectdiscovery/cloudlist
 
 ```bash
 go install github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
