@@ -27,7 +27,7 @@ generate_host_urls_additional () {
 
 generate_domain_urls_fast () {
     echo "[!] Subfinder and httpx started for domains"
-    subfinder -silent -dL domains -all -o subdomains
+    subfinder -silent -dL domains -o subdomains
     cat domains subdomains | sort -u | httpx -silent -p $FAST_WEB_PORTS -o urls_fast
 }
 
