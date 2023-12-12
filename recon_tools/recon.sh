@@ -49,7 +49,7 @@ fast_scan () {
     jq -r '.results | sort_by(.url) | .[] | select(.status==403) | "\(.length),\(.url)"' ffuf_raft_quick ffuf_fuzboom_fast ffuf_common_fast | column -t -s, > f403fast
 
     echo "[!] Fast Nuclei started"
-    nuclei -m -l urls_fast -es info -rate-limit $THREAD -H "$ADDITIONAL_HEADER" -H "$USER_AGENT" -o nuclei_out_fast
+    nuclei -l urls_fast -es info -rate-limit $THREAD -H "$ADDITIONAL_HEADER" -H "$USER_AGENT" -o nuclei_out_fast
     echo "Finished $TARGET Fast Scan" | notify -silent
 }
 
@@ -66,7 +66,7 @@ additional_scan () {
     jq -r '.results | sort_by(.url) | .[] | select(.status==403) | "\(.length),\(.url)"' ffuf_raft_quick_additional ffuf_fuzboom_additional ffuf_common_additional | column -t -s, > f403additional
 
     echo "[!] Additional Nuclei started"
-    nuclei -m -l urls_additional -es info -rate-limit $THREAD -H "$ADDITIONAL_HEADER" -H "$USER_AGENT" -o nuclei_out_additional
+    nuclei -l urls_additional -es info -rate-limit $THREAD -H "$ADDITIONAL_HEADER" -H "$USER_AGENT" -o nuclei_out_additional
     echo "Finished $TARGET Additional Scan" | notify -silent
 }
 
