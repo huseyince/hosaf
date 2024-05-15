@@ -30,3 +30,5 @@ uploads
 uploads/
 turbonet-1.0/fileupload.html
 turbonet-1.0/users.html
+/ganglia/
+/ganglia/?c=ElastiCluster&m=load_one&r=hour&s=by%20name&hc=4&mc=2

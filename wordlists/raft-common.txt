@@ -1,0 +1,5 @@
+api
+api/v1
+api/configuration
+upload
+uploads
