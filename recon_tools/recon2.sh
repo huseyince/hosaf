@@ -46,7 +46,8 @@ fast_scan () {
     jq -r '.results | sort_by(.url) | .[] | select(.status==200) | "\(.length),\(.url)"' ffuf_raft_quick | column -t -s, > f200fast
     jq -r '.results | sort_by(.url) | .[] | select(.status==403) | "\(.length),\(.url)"' ffuf_raft_quick | column -t -s, > f403fast
 
-    echo "[!] Fast Nuclei started"
+    echo "[!] Fast Nuclei started on [$TARGET]"
+    echo "[!] Command: nuclei -ni -l urls_fast -es info -rate-limit 5 -o nuclei_out_fast"
     nuclei -ni -l urls_fast -es info -rate-limit $THREAD -H "$ADDITIONAL_HEADER" -H "$USER_AGENT" -o nuclei_out_fast
     echo "Finished $TARGET Fast Scan" | notify -silent
 }
