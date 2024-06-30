@@ -3,3 +3,4 @@ api/v1
 api/configuration
 upload
 uploads
+config.json
