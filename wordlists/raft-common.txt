@@ -4,3 +4,4 @@ api/configuration
 upload
 uploads
 config.json
+webservices/v1
