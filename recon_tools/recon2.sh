@@ -38,7 +38,7 @@ generate_domain_urls_additional () {
 
 fast_scan () {
     echo "[!] Fast gowitness started"
-    gowitness file -f urls_fast
+    gowitness scan file -f urls_fast --save-content --write-db
 
     echo "[!] Fast Fuzzing started"
     ffuf -s -t $THREAD -c -H "$ADDITIONAL_HEADER" -H "$USER_AGENT" -u URL/WORD -w urls_fast:URL -w ~/tools/hosaf/wordlists/raft-quick.txt:WORD -o ffuf_raft_quick
@@ -54,7 +54,7 @@ fast_scan () {
 
 additional_scan () {
     echo "[!] Additional gowitness started"
-    gowitness file -f urls_additional
+    gowitness scan file -f urls_additional --save-content --write-db
 
     echo "[!] Additional Fuzzing started"
     ffuf -s -t $THREAD -c -H "$ADDITIONAL_HEADER" -H "$USER_AGENT" -u URL/WORD -w urls_additional:URL -w ~/tools/hosaf/wordlists/raft-quick.txt:WORD -o ffuf_raft_quick_additional
